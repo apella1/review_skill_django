@@ -1,0 +1,18 @@
+[tool.poetry]
+name = "review-skill-django"
+version = "0.1.0"
+description = "ReviewSkill APIs"
+authors = ["apella1 <johncollons5@gmail.com>"]
+license = "MIT"
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+Django = "^4.2.6"
+djangorestframework = "^3.14.0"
+requests = "^2.31.0"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
