@@ -13,4 +13,4 @@ class User(models.Model):
     bio = models.TextField()
 
     def __str__(self) -> str:
-        return str(f"{self.first_name} {self.last_name}")
+        return str(self.full_name)
