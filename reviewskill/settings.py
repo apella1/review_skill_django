@@ -9,6 +9,7 @@ https://docs.djangoproject.com/en/4.2/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.2/ref/settings/
 """
+import os
 from pathlib import Path
 
 import django_on_heroku
@@ -81,7 +82,9 @@ WSGI_APPLICATION = "reviewskill.wsgi.application"
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
-if config("ENVIRONMENT") == "development":
+ENVIRONMENT = os.environ.get("ENVIRONMENT", "development")
+
+if ENVIRONMENT == "development":
     DATABASES = {
         "default": {
             "ENGINE": "django.db.backends.postgresql",
