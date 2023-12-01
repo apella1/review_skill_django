@@ -1,24 +1,20 @@
-"""User views"""
-from rest_framework import authentication, generics, permissions
+from rest_framework import generics
+from rest_framework import permissions
 from rest_framework.response import Response
-from rest_framework.views import APIView
 
 from .models import User
 from .serializers import UserSerializer
 
 
-class UserListCreateView(APIView):
-    """_Listing all users. Requires token authentication.
-    Only admins can access the view
-    """
-
-    authentication_classes = [authentication.TokenAuthentication]
+class UserListCreateView(generics.ListCreateAPIView):
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
     permission_classes = [permissions.IsAdminUser]
 
-    def get(self, request):
-        """Listing user full names"""
-        users = [user.full_name for user in User.objects.all()]
-        return Response(users)
+    def list(self, request):
+        queryset = self.get_queryset()
+        serializer = UserSerializer(queryset, many=True)
+        return Response(serializer.data)
 
 
 class UserUpdateView(generics.UpdateAPIView):
